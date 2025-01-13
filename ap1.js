@@ -26,18 +26,19 @@ if (!filePath) {
   }
  }
 }
-
-saveToFile(){
-  fs.writeFileSync(this.path, JSON.stringify (this.products, null, 2));
-}
-
- // El método addProduct sirve como modelo que contiene las propiedades de los objetos que se van a crear
- addProduct({ title, description, price, thumbnail, stock }) {
-  // Con esta función se valida que todos los campos estén presentes, (! significa que no está o es contrario, || es or -o-)
-  if (!title || !description || !price || !thumbnail || !stock) {
-   console.error(" Producto no agregado: todos los campos son obligatorios.");
-   return; //si no ocurre el error se muestra el objeto añadido
+ saveToFile(){
+   fs.writeFileSync(this.path, JSON.stringify (this.products, null, 2));
   }
+  
+  // El método addProduct sirve como modelo que contiene las propiedades de los objetos que se van a crear
+  addProduct({ title, description, price, thumbnail, stock }) {
+    // Con esta función se valida que todos los campos estén presentes, (! significa que no está o es contrario, || es or -o-)
+    if (!title || !description || !price || !thumbnail || !stock) {
+      console.error(" Producto no agregado: todos los campos son obligatorios.");
+    
+    return; //si no ocurre el error se muestra el objeto añadido
+  }
+
 
   // Con este método se valida que no se repita un producto (en este caso verificando si el título y la descripción ya existen en otro objeto)
   const exists = this.products.some(
@@ -79,14 +80,38 @@ saveToFile(){
   console.log("Producto localizado: ");
   return product;
  }
+
+ //Método para actualizar productos
+
+ updateProduct(id, updates){
+  const productIndex = this.products.findIndex((product) => product.code === id );
+  if (productIndex === -1) {
+    console.error(
+      `Producto con ID ${id} no encontrado.`);
+     return;
+  }
+
+  const product =  this.products[productIndex];
+  const updatedProduct = {...product, ...updates };
+
+  if (updatedProduct.code !== id) {
+    console.error("El ID del producto no puede ser modificado.");
+    return;
+  }
+
+  this.products[productIndex] = updatedProduct;
+  this.saveToFile();
+  console.log(`Producto con ID ${id} actualizado.`);
 }
+ }
+
 // hasta aquí termina el constructor (en este caso)
 
 //aquí se comienzan a construir los nuevos objetos (productos)
 const manager = new ProductManager('./files.json');
 //PROCESO DE TESTING
 // 2. Se llamará "getProducts" recién creada la instancia, debe devolver un arreglo vacío []
-console.log(manager.getProducts());
+console.log("arreglo vacio", manager.getProducts());
 // PROCESO DE TESTING
 // 3. Se llamará al método "addProduct" con los siguientes campos:
 manager.addProduct({
@@ -99,7 +124,7 @@ manager.addProduct({
 //PROCESO DE TESTING
 //4. El objeto debe agregarse satisfactoriamente con un id generado automáticamente SIN REPETIRSE
 //5. Se llamará el método "getProducts" nuevamente, esta vez debe aparecer el producto recién agregado
-console.log(manager.getProducts());
+console.log("se obtiene el objeto agregado", manager.getProducts());
 
 //PROCESO DE TESTING
 //6. Se llamará al método "addProduct" con los mismos campos de arriba, debe arrojar un error porque el código estará repetido.
@@ -110,7 +135,7 @@ manager.addProduct({
  thumbnail: "Sin imagen",
  stock: 25,
 });
-console.log(manager.getProducts());
+console.log("se obtiene el objeto repetido", manager.getProducts());
 
 // Se intenta añadir un producto sin el campo "descripción" para que genere error y no lo añada al arreglo
 manager.addProduct({
@@ -121,7 +146,10 @@ manager.addProduct({
  stock: 15,
 });
 
+manager.updateProduct(1, {price: 180, stock: 100});
 // PROCESO DE TESTING
 //7. Se evaluará que getProductById devuelva error si no encuentra el producto o el producto en caso de encontrarlo
-console.log(manager.getProductById(99));
-console.log(manager.getProductById(1));
+console.log("localización del objeto con ID 99", manager.getProductById(99));
+console.log("localización del objeto con ID 1", manager.getProductById(1));
+console.log("Se obtiene el objeto con el ID 1 actualizado", manager.getProducts());
+
