@@ -152,4 +152,4 @@ manager.updateProduct(1, {price: 180, stock: 100});
 console.log("localización del objeto con ID 99", manager.getProductById(99));
 console.log("localización del objeto con ID 1", manager.getProductById(1));
 console.log("Se obtiene el objeto con el ID 1 actualizado", manager.getProducts());
-
+module.exports = ProductManager;

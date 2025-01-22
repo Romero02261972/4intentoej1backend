@@ -101,3 +101,6 @@ const cart = cartManager.getCartById(cartId);
 console.log("Carrito obtenido:", cart);
 
 console.log("Todos los carritos:", cartManager.getCarts());
+
+module.exports = CartManager;
+
