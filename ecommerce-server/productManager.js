@@ -108,7 +108,7 @@ if (!filePath) {
 // hasta aquí termina el constructor (en este caso)
 
 //aquí se comienzan a construir los nuevos objetos (productos)
-const manager = new ProductManager('./files.json');
+const manager = new ProductManager('./products.json');
 //PROCESO DE TESTING
 // 2. Se llamará "getProducts" recién creada la instancia, debe devolver un arreglo vacío []
 console.log("arreglo vacio", manager.getProducts());
