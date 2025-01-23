@@ -3,6 +3,7 @@ const ProductManager = require("./productManager");
 const CartManager = require("./cartManager");
 const app = express();
 
+app.use(express.urlencoded({extended:true}))
 app.use(express.json()); // Middleware para interpretar JSON
 
 // Instanciar manejadores
