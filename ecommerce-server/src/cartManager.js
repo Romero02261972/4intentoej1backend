@@ -1,5 +1,6 @@
 const fs = require("fs");
 const path = require("path");
+const { faker } = require("@faker-js/faker"); // Importamos Faker
 
 class CartManager {
   constructor(filePath) {
@@ -37,8 +38,9 @@ class CartManager {
   }
 
   createCart() {
+    // Generar un nuevo carrito con un ID único
     const newCart = {
-      id: this.carts.length > 0 ? this.carts[this.carts.length - 1].id + 1 : 1,
+      id: faker.datatype.uuid(), // Genera un ID único con Faker
       products: [],
     };
     this.carts.push(newCart);
@@ -57,8 +59,8 @@ class CartManager {
   }
 
   addProductToCart(cartId, productId, quantity) {
-    if (!cartId || typeof cartId !== "number") {
-      console.error("El ID del carrito debe ser un número válido.");
+    if (!cartId || typeof cartId !== "string") {
+      console.error("El ID del carrito debe ser un string válido.");
       return;
     }
     if (!productId || typeof productId !== "number") {
@@ -90,17 +92,21 @@ class CartManager {
   }
 }
 
+// PROCESO DE TESTING
 const cartManager = new CartManager(path.resolve(__dirname, "carts.json"));
 
+// Crear un nuevo carrito
 const cartId = cartManager.createCart();
 
+// Agregar productos al carrito
 cartManager.addProductToCart(cartId, 1, 2);
 cartManager.addProductToCart(cartId, 2, 1);
 
+// Obtener el carrito por su ID
 const cart = cartManager.getCartById(cartId);
 console.log("Carrito obtenido:", cart);
 
+// Obtener todos los carritos
 console.log("Todos los carritos:", cartManager.getCarts());
 
 module.exports = CartManager;
-
