@@ -6,28 +6,11 @@ const app = express();
 const PORT = 8080;
 
 // Instanciar los manejadores
-const productManager = new ProductManager("./products.json");
-const cartManager = new CartManager("./carts.json");
+const productManager = new ProductManager("./src/products.json");
+const cartManager = new CartManager("./src/carts.json");
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-
-// Ruta POST para agregar productos con Faker
-app.post("/api/products", (req, res) => {
-  const newProduct = req.body;
-
-  // Generar un ID único con Faker
-  newProduct.id = faker.datatype.uuid();
-
-  // Agregar el producto usando ProductManager
-  productManager.addProduct(newProduct);
-
-  console.log(newProduct);
-  res.status(201).json({
-    message: "Producto recibido con éxito",
-    product: newProduct,
-  });
-});
 
 // Router para productos
 const productsRouter = express.Router();
@@ -37,7 +20,7 @@ productsRouter.get("/", (req, res) => {
 });
 
 productsRouter.get("/:pid", (req, res) => {
-  const product = productManager.getProductById(Number(req.params.pid));
+  const product = productManager.getProductById(req.params.pid);
   if (product) {
     res.json(product);
   } else {
@@ -49,7 +32,7 @@ productsRouter.post("/", (req, res) => {
   const newProduct = req.body;
 
   // Generar un ID único con Faker
-  newProduct.id = faker.datatype.uuid();
+  newProduct.id = faker.string.uuid();
 
   // Agregar el producto usando ProductManager
   productManager.addProduct(newProduct);
@@ -62,12 +45,12 @@ productsRouter.post("/", (req, res) => {
 
 productsRouter.put("/:pid", (req, res) => {
   const updatedProduct = req.body;
-  productManager.updateProduct(Number(req.params.pid), updatedProduct);
+  productManager.updateProduct(req.params.pid, updatedProduct);
   res.send({ message: "Producto actualizado con éxito" });
 });
 
 productsRouter.delete("/:pid", (req, res) => {
-  productManager.deleteProduct(Number(req.params.pid));
+  productManager.deleteProduct(req.params.pid);
   res.send({ message: "Producto eliminado con éxito" });
 });
 
@@ -79,8 +62,12 @@ cartsRouter.post("/", (req, res) => {
   res.status(201).send({ message: `Carrito creado con ID: ${cartId}` });
 });
 
+cartsRouter.get("/", (req, res) => {
+  res.json(cartManager.getCarts());
+});
+
 cartsRouter.get("/:cid", (req, res) => {
-  const cart = cartManager.getCartById(Number(req.params.cid));
+  const cart = cartManager.getCartById(req.params.cid);
   if (cart) {
     res.json(cart);
   } else {
@@ -90,7 +77,7 @@ cartsRouter.get("/:cid", (req, res) => {
 
 cartsRouter.post("/:cid/product/:pid", (req, res) => {
   const { cid, pid } = req.params;
-  cartManager.addProductToCart(Number(cid), Number(pid), 1);
+  cartManager.addProductToCart(cid, Number(pid), 1);
   res.send({ message: "Producto agregado al carrito con éxito" });
 });
 

@@ -1,5 +1,5 @@
-const fs = require('fs');
-const { faker } = require('@faker-js/faker');
+const fs = require("fs");
+const { faker } = require("@faker-js/faker");
 
 class ProductManager {
   constructor(filePath) {
@@ -12,10 +12,10 @@ class ProductManager {
     this.path = filePath;
 
     if (!fs.existsSync(this.path)) {
-      fs.writeFileSync(this.path, JSON.stringify([], null, 2)); 
+      fs.writeFileSync(this.path, JSON.stringify([], null, 2));
     } else {
-      const data = fs.readFileSync(this.path, 'utf-8');
-      this.products = JSON.parse(data); 
+      const data = fs.readFileSync(this.path, "utf-8");
+      this.products = JSON.parse(data);
     }
   }
 
@@ -24,8 +24,22 @@ class ProductManager {
   }
 
   addProduct({ title, description, price, thumbnail, stock }) {
-    if (!title || !description || !price || !thumbnail || !stock) {
-      console.error("Producto no agregado: todos los campos son obligatorios.");
+    if (
+      !title ||
+      typeof title !== "string" ||
+      title.trim() === "" ||
+      !description ||
+      typeof description !== "string" ||
+      description.trim() === "" ||
+      typeof price !== "number" ||
+      price <= 0 ||
+      !thumbnail ||
+      typeof thumbnail !== "string" ||
+      thumbnail.trim() === "" ||
+      typeof stock !== "number" ||
+      stock <= 0
+    ) {
+      console.error("Producto no agregado: Todos los campos son obligatorios y deben ser válidos.");
       return;
     }
 
@@ -37,9 +51,8 @@ class ProductManager {
       return;
     }
 
-    // Generar ID único con Faker
     const newProduct = {
-      id: faker.datatype.uuid(),
+      id: faker.string.uuid(),
       title,
       description,
       price,
@@ -53,7 +66,6 @@ class ProductManager {
   }
 
   getProducts() {
-    console.log("Productos agregados:");
     return this.products;
   }
 
@@ -63,7 +75,6 @@ class ProductManager {
       console.error("Estatus del producto: Not found");
       return null;
     }
-    console.log("Producto localizado:");
     return product;
   }
 
@@ -77,7 +88,6 @@ class ProductManager {
     const product = this.products[productIndex];
     const updatedProduct = { ...product, ...updates };
 
-    // Prevenir cambios en el ID
     if (updatedProduct.id !== id) {
       console.error("El ID del producto no puede ser modificado.");
       return;
@@ -87,32 +97,6 @@ class ProductManager {
     this.saveToFile();
     console.log(`Producto con ID ${id} actualizado.`);
   }
-}
-
-const manager = new ProductManager('./products.json');
-
-manager.addProduct({
-  title: "Producto Prueba",
-  description: "Este es un producto prueba",
-  price: 200,
-  thumbnail: "Sin imagen",
-  stock: 25,
-});
-
-console.log("Productos:", manager.getProducts());
-
-const productos = manager.getProducts();
-if (productos.length > 0) {
-  const producto = productos[0];
-  console.log("Producto encontrado:", manager.getProductById(producto.id));
-} else {
-  console.log("No hay productos para buscar.");
-}
-
-if (productos.length > 0) {
-  const producto = productos[0];
-  manager.updateProduct(producto.id, { price: 300, stock: 50 });
-  console.log("Producto actualizado:", manager.getProducts());
 }
 
 module.exports = ProductManager;
