@@ -1,1 +1,12 @@
-[]
+[
+  {
+    "id": "51cc4133-6313-4ab6-ae33-7bb02048c980",
+    "title": "Producto de prueba 1",
+    "description": "este es un producto de prueba 1",
+    "price": 100,
+    "status": true,
+    "thumbnail": "sin imagen",
+    "stock": 1,
+    "category": "productos"
+  }
+]

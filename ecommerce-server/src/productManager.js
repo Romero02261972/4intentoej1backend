@@ -1,15 +1,18 @@
 const fs = require("fs");
-const { faker } = require("@faker-js/faker");
+const { faker } = require(`@faker-js/faker`);
+const path = require("path");
 
 class ProductManager {
   constructor(filePath) {
-    this.products = [];
+    
     if (!filePath) {
       console.error("Se debe proporcionar una ruta válida para el archivo.");
       return;
     }
 
-    this.path = filePath;
+    this.path = path.resolve(filePath);
+    console.log("Ruta del archivo product.json", this.path);
+    this.products = [];
 
     if (!fs.existsSync(this.path)) {
       fs.writeFileSync(this.path, JSON.stringify([], null, 2));
@@ -20,10 +23,15 @@ class ProductManager {
   }
 
   saveToFile() {
+    try{
     fs.writeFileSync(this.path, JSON.stringify(this.products, null, 2));
+  console.log("Archivo actualizado correctamente.");
+  } catch (error){
+    console.error(`Error al guardar el archivo: ${error.message}`);
+  }
   }
 
-  addProduct({ title, description, price, thumbnail, stock }) {
+  addProduct({ title, description, price, status, thumbnail, stock, category }) {
     if (
       !title ||
       typeof title !== "string" ||
@@ -33,11 +41,15 @@ class ProductManager {
       description.trim() === "" ||
       typeof price !== "number" ||
       price <= 0 ||
+      typeof status !== "boolean" ||
       !thumbnail ||
       typeof thumbnail !== "string" ||
       thumbnail.trim() === "" ||
       typeof stock !== "number" ||
-      stock <= 0
+      stock <= 0 ||
+      !category ||
+      typeof category !== "string" ||
+      category.trim() ===""
     ) {
       console.error("Producto no agregado: Todos los campos son obligatorios y deben ser válidos.");
       return;
@@ -50,14 +62,16 @@ class ProductManager {
       console.error("Error: Producto duplicado.");
       return;
     }
-
+    const id = faker.string.uuid();
     const newProduct = {
-      id: faker.string.uuid(),
+      id,
       title,
       description,
       price,
+      status,
       thumbnail,
       stock,
+      category
     };
 
     this.products.push(newProduct);

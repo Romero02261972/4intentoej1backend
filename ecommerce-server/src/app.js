@@ -4,10 +4,12 @@ const ProductManager = require("./productManager");
 const CartManager = require("./cartManager");
 const app = express();
 const PORT = 8080;
+const path = require("path");
 
 // Instanciar los manejadores
-const productManager = new ProductManager("./src/products.json");
-const cartManager = new CartManager("./src/carts.json");
+const productManager = new ProductManager("products.json");
+const cartManager = new CartManager(path.join("carts.json"));
+//console.log("Directorio actual:", __dirname);
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -30,12 +32,18 @@ productsRouter.get("/:pid", (req, res) => {
 
 productsRouter.post("/", (req, res) => {
   const newProduct = req.body;
+  console.log("Producto recibido:", newProduct);
+  
+  if (typeof newProduct.status === "string") {
+    newProduct.status = newProduct.status.toLowerCase() === "true";
+  }
 
   // Generar un ID único con Faker
   newProduct.id = faker.string.uuid();
 
   // Agregar el producto usando ProductManager
   productManager.addProduct(newProduct);
+  console.log("Productos después de agregar:", productManager.getProducts());
 
   res.status(201).send({
     message: "Producto agregado con éxito",
@@ -62,9 +70,9 @@ cartsRouter.post("/", (req, res) => {
   res.status(201).send({ message: `Carrito creado con ID: ${cartId}` });
 });
 
-cartsRouter.get("/", (req, res) => {
-  res.json(cartManager.getCarts());
-});
+//cartsRouter.get("/", (req, res) => {
+  //res.json(cartManager.getCarts());
+//});
 
 cartsRouter.get("/:cid", (req, res) => {
   const cart = cartManager.getCartById(req.params.cid);
