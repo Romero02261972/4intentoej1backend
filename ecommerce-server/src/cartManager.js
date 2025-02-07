@@ -1,4 +1,5 @@
 const fs = require("fs");
+const path = require("path");  // ✅ Importamos path para manejar rutas correctamente
 const { faker } = require("@faker-js/faker");
 
 class CartManager {
@@ -8,7 +9,9 @@ class CartManager {
       return;
     }
 
-    this.path = filePath;
+    this.path = path.join(__dirname, filePath);  // ✅ Aseguramos que se guarde en `src/`
+    console.log("Ruta del archivo carts.json:", this.path);  // ✅ Verificar la ruta en la consola
+
     this.carts = [];
 
     if (!fs.existsSync(this.path)) {
@@ -31,6 +34,7 @@ class CartManager {
   saveToFile() {
     try {
       fs.writeFileSync(this.path, JSON.stringify(this.carts, null, 2));
+      console.log("Archivo carts.json guardado correctamente."); // ✅ Mensaje de confirmación
     } catch (error) {
       console.error(`Error al guardar en el archivo: ${error.message}`);
     }
@@ -76,5 +80,8 @@ class CartManager {
     return this.carts;
   }
 }
+
+// 
+const cartManager = new CartManager("./carts.json");
 
 module.exports = CartManager;

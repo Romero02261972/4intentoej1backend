@@ -8,5 +8,245 @@
     "thumbnail": "sin imagen",
     "stock": 1,
     "category": "productos"
+  },
+  {
+    "id": "62afe940-4423-4d33-921f-dcc7c5926977",
+    "title": "Producto de prueba 2",
+    "description": "este es un producto de prueba 2",
+    "price": 200,
+    "status": true,
+    "thumbnail": "sin imagen",
+    "stock": 1,
+    "category": "productos"
+  },
+  {
+    "id": "e5192fac-2f56-441f-a185-99c9ce160c7e",
+    "title": "Producto de prueba 3",
+    "description": "este es un producto de prueba 3",
+    "price": 300,
+    "status": true,
+    "thumbnail": "sin imagen",
+    "stock": 1,
+    "category": "productos"
+  },
+  {
+    "id": "8e923bd7-840d-456f-8156-eb50ba8034f6",
+    "title": "Producto de prueba 4",
+    "description": "este es un producto de prueba 4",
+    "price": 400,
+    "status": true,
+    "thumbnail": "sin imagen",
+    "stock": 4,
+    "category": "productos"
+  },
+  {
+    "id": "c38bbe84-58b6-4a18-b99b-4a34b618d64d",
+    "title": "Producto de prueba 5",
+    "description": "este es un producto de prueba 5",
+    "price": 500,
+    "status": true,
+    "thumbnail": "sin imagen",
+    "stock": 5,
+    "category": "productos"
+  },
+  {
+    "id": "52c953d4-ead4-485a-a5e8-d09700e2e6ef",
+    "title": "Producto de prueba 6",
+    "description": "este es un producto de prueba 6",
+    "price": 600,
+    "status": true,
+    "thumbnail": "sin imagen",
+    "stock": 6,
+    "category": "productos"
+  },
+  {
+    "id": "3177aac7-aeb4-4e49-a447-43a75eaddb41",
+    "title": "Producto de prueba 7",
+    "description": "este es un producto de prueba 7",
+    "price": 700,
+    "status": true,
+    "thumbnail": "sin imagen",
+    "stock": 7,
+    "category": "productos"
+  },
+  {
+    "id": "db627e9c-7144-4976-831b-a210aea429bd",
+    "title": "Producto de prueba 8",
+    "description": "este es un producto de prueba 8",
+    "price": 800,
+    "status": true,
+    "thumbnail": "sin imagen",
+    "stock": 8,
+    "category": "productos"
+  },
+  {
+    "id": "dda19305-677b-4f73-a256-0655793e160c",
+    "title": "Producto de prueba 9",
+    "description": "este es un producto de prueba 9",
+    "price": 900,
+    "status": true,
+    "thumbnail": "sin imagen",
+    "stock": 9,
+    "category": "productos"
+  },
+  {
+    "id": "3767c226-bcd0-44e6-a940-809c53be938f",
+    "title": "Producto de prueba 10",
+    "description": "este es un producto de prueba 10",
+    "price": 1000,
+    "status": true,
+    "thumbnail": "sin imagen",
+    "stock": 10,
+    "category": "productos"
+  },
+  {
+    "id": "a31debe4-f2be-46bc-9614-03c14236adaa",
+    "title": "Producto de prueba 11",
+    "description": "este es un producto de prueba 11",
+    "price": 1100,
+    "status": true,
+    "thumbnail": "sin imagen",
+    "stock": 11,
+    "category": "productos"
+  },
+  {
+    "id": "f86dbc06-61a0-4ff7-a601-f679f5375556",
+    "title": "Producto de prueba 12",
+    "description": "este es un producto de prueba 12",
+    "price": 1200,
+    "status": true,
+    "thumbnail": "sin imagen",
+    "stock": 12,
+    "category": "productos"
+  },
+  {
+    "id": "3e34534e-d9bb-4ede-a467-f4c88a568c58",
+    "title": "Producto de prueba 13",
+    "description": "este es un producto de prueba 13",
+    "price": 1300,
+    "status": true,
+    "thumbnail": "sin imagen",
+    "stock": 13,
+    "category": "productos"
+  },
+  {
+    "id": "7cd30b9d-49ca-45b1-baac-63327bfe636e",
+    "title": "Producto de prueba 14",
+    "description": "este es un producto de prueba 14",
+    "price": 1400,
+    "status": true,
+    "thumbnail": "sin imagen",
+    "stock": 14,
+    "category": "productos"
+  },
+  {
+    "id": "b9a70b41-5221-423d-9979-ad8559fbe520",
+    "title": "Producto de prueba 15",
+    "description": "este es un producto de prueba 15",
+    "price": 1500,
+    "status": true,
+    "thumbnail": "sin imagen",
+    "stock": 15,
+    "category": "productos"
+  },
+  {
+    "id": "7973390f-3759-49eb-ba14-72e8fb05858c",
+    "title": "Producto de prueba 16",
+    "description": "este es un producto de prueba 16",
+    "price": 1600,
+    "status": true,
+    "thumbnail": "sin imagen",
+    "stock": 16,
+    "category": "productos"
+  },
+  {
+    "id": "439ab452-5341-4139-9879-9c12ea47d4a7",
+    "title": "Producto de prueba 17",
+    "description": "este es un producto de prueba 17",
+    "price": 1700,
+    "status": true,
+    "thumbnail": "sin imagen",
+    "stock": 17,
+    "category": "accesorios"
+  },
+  {
+    "id": "814ea542-09e8-404b-bc4c-6b9f9249bd03",
+    "title": "Producto de prueba 18",
+    "description": "este es un producto de prueba 18",
+    "price": 100,
+    "status": true,
+    "thumbnail": "sin imagen",
+    "stock": 18,
+    "category": "accesorios"
+  },
+  {
+    "id": "2f28c36c-4b4e-4086-ab81-e27a11d0c3d3",
+    "title": "Producto de prueba 19",
+    "description": "este es un producto de prueba 19",
+    "price": 1900,
+    "status": true,
+    "thumbnail": "sin imagen",
+    "stock": 19,
+    "category": "accesorios"
+  },
+  {
+    "id": "61009959-df7f-400c-93a1-ec39bcecd058",
+    "title": "Producto de prueba 20",
+    "description": "este es un producto de prueba 20",
+    "price": 2000,
+    "status": true,
+    "thumbnail": "sin imagen",
+    "stock": 20,
+    "category": "accesorios"
+  },
+  {
+    "id": "0cf1087b-e818-4fb7-86ef-ce80aecdc1e6",
+    "title": "Producto de prueba 21",
+    "description": "este es un producto de prueba 21",
+    "price": 2100,
+    "status": true,
+    "thumbnail": "sin imagen",
+    "stock": 21,
+    "category": "accesorios"
+  },
+  {
+    "id": "fda321cd-4bd2-411f-9b09-e692a87d8bca",
+    "title": "Producto de prueba 22",
+    "description": "este es un producto de prueba 22",
+    "price": 2200,
+    "status": true,
+    "thumbnail": "sin imagen",
+    "stock": 22,
+    "category": "accesorios"
+  },
+  {
+    "id": "50a453e7-de8f-465d-be32-9f184a3bee57",
+    "title": "Producto de prueba 23",
+    "description": "este es un producto de prueba 23",
+    "price": 2300,
+    "status": true,
+    "thumbnail": "sin imagen",
+    "stock": 23,
+    "category": "accesorios"
+  },
+  {
+    "id": "9e76661c-e5b7-4498-b4ce-c479a0cba961",
+    "title": "Producto de prueba 24",
+    "description": "este es un producto de prueba 24",
+    "price": 2400,
+    "status": true,
+    "thumbnail": "sin imagen",
+    "stock": 24,
+    "category": "accesorios"
+  },
+  {
+    "id": "3d7eaed4-ec69-48bb-b6c7-7b05c766c89d",
+    "title": "Producto de prueba 25",
+    "description": "este es un producto de prueba 25",
+    "price": 2500,
+    "status": true,
+    "thumbnail": "sin imagen",
+    "stock": 25,
+    "category": "accesorios"
   }
 ]
