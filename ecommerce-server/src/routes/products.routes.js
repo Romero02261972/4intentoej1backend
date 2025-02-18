@@ -5,13 +5,12 @@ const router = express.Router();
 const productManager = new ProductManager("products.json");
 
 // Obtener todos los productos
-router.get("/", (req, res) => {
+router.get('/', (req, res) => {
     const products = productManager.getProducts();
     console.log("Productos obtenidos en /api/products:", products);
     res.json(products); 
   });
   
-
 // Obtener producto por ID
 router.get("/:pid", (req, res) => {
   const product = productManager.getProductById(req.params.pid);

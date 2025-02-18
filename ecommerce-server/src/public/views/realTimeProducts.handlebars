@@ -1,0 +1,21 @@
+<h1 class="text-center mt-4">Productos en Tiempo Real</h1>
+<div class="container">
+    <form id="formProducto" class="mb-4">
+        <div class="mb-3">
+            <label for="title" class="form-label">Título</label>
+            <input type="text" class="form-control" id="title" required>
+        </div>
+        <div class="mb-3">
+            <label for="price" class="form-label">Precio</label>
+            <input type="number" class="form-control" id="price" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Agregar Producto</button>
+    </form>
+    
+    <ul id="listaProductos" class="list-group">
+        <!-- Los productos se insertarán aquí en tiempo real -->
+    </ul>
+</div>
+
+<script src="https://cdn.socket.io/4.8.1/socket.io.min.js" integrity="sha384-mkQ3/7FUtcGyoppY6bz/PORYoGqOl7/aSUMn2ymDOJcapfS6PHqxhRTMh1RR0Q6+" crossorigin="anonymous"></script>
+<script src="./scripts/realRegister.js"></script>
